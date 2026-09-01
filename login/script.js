@@ -1,33 +1,49 @@
-function realizarLogin () {
-localStorage.setItem("email", 'email@email.com')
-const user = {
-    email:"email@email.com",
-    nome:"teste"
+function realizarLogin(){
+    const body = document.querySelector("body")
+    body.insertAdjacentHTML("afterbegin", `
+        <main>
+  <form>
+    <h1>Login</h1>
+    <div> 
+
+        <label for="email"> E-mail</label>
+        <input type="email" id="email">
+
+    </div>
+  <div>
+    <label for="senha"> Senha</label>
+    <input type="password" id="senha">
+  </div>
+   <button type="submit">Login</button>
+    <a href="../registro/index.html">Cadastre-se</a>
+   </form>
+
+
+</main>`)
 }
-}
-const userJson = JSON.stringfly(user)
-localStorage.setItem("user", userJson)
-setTimeout(() => {
-     window,location.href = "/" 
-}, 3000);
-function formLogin() {
- const form = document.querySelector("form")
- form.addEventListener("submit", (event) => {
+realizarLogin()
+
+function efetuarLogin(){
+  const form = document.querySelector("form")
+  form.addEventListener("submit", (event) => { 
     event.preventDefault()
-    console.log('form submit')
-    const inputEmail = document.querySelector('#email')
-    const inputSenha = document.querySelector('#senha')
-    console.log(inputEmail.value, inputSenha.value)
-    if (inputEmail.value == "admin@email.com" && inputSenha.value == "cyber") {
-        localStorage.setItem("email", inputEmail.value)
-        const user = {
-            email:inputEmail.value,
-            nome:inputSenha.value
-        
-        }
-    }
-     
-                
-})}
+  })
+  const inputEmail = document.querySelector("#email")
+  const inputSenha = document.querySelector("#senha")
+  
+  console.log(inputEmail.value, inputSenha.value)
+ const user = JSON.parse(localStorage.getItem("user"))
+  
+ if (
+   inputEmail.value === user.email &&
+   inputSenha.value === user.senha
+){
+ location.href = "../index.html"
+}
+ 
+  
+ 
+ 
 
 
+}
